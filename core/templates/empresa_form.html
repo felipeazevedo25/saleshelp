@@ -1,0 +1,33 @@
+{% extends "model-page.html" %}
+
+{% block style %}
+    <style>
+        div.polaroid {
+            width: 250px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            text-align: center;
+        }
+        div.container {
+            padding: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<body>
+    <h1>New/Update empresa</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Save</button>
+        {% if empresa %}
+        <button type="submit" href="{% url 'delete_empresa' empresa.id %}">Voltar</button>
+        <button><a href="{% url 'delete_empresa' empresa.id %}">Delete</a></button>
+    {% endif %}
+    </form>
+
+</body>
+
+</html>
+{% endblock %}
